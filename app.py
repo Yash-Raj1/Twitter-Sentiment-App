@@ -1,3 +1,27 @@
+import os
+import gdown
+import zipfile
+
+# Google Drive File ID of your ZIP
+FILE_ID = "1grtTJZ30zJV8pr8Xvy-lPZ6xeodzgbdp"  # Replace this with your file ID
+ZIP_PATH = "model_files.zip"
+EXTRACT_DIR = "model_files"
+
+# Download ZIP if not already downloaded
+if not os.path.exists(ZIP_PATH):
+    url = f"https://drive.google.com/uc?id={FILE_ID}"
+    gdown.download(url, ZIP_PATH, quiet=False)
+
+# Extract ZIP if not already extracted
+if not os.path.exists(EXTRACT_DIR):
+    with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
+        zip_ref.extractall(EXTRACT_DIR)
+
+# Load model and vectorizer from extracted folder
+import pickle
+model = pickle.load(open(os.path.join(EXTRACT_DIR, 'trained_model.sav'), 'rb'))
+vectorizer = pickle.load(open(os.path.join(EXTRACT_DIR, 'vectorizer.sav'), 'rb'))
+
 import streamlit as st
 import pickle
 import numpy as np
