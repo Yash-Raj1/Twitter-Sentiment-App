@@ -23,12 +23,10 @@ model = pickle.load(open(os.path.join(EXTRACT_DIR, 'trained_model.sav'), 'rb'))
 vectorizer = pickle.load(open(os.path.join(EXTRACT_DIR, 'vectorizer.sav'), 'rb'))
 
 import streamlit as st
-import pickle
+#import pickle
 import numpy as np
 
-# Load model and vectorizer
-model = pickle.load(open('trained_model.sav', 'rb'))
-vectorizer = pickle.load(open('vectorizer.sav', 'rb'))
+
 
 
 # Initialize session state
